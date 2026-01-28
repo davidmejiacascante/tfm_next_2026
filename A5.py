@@ -10,6 +10,7 @@ st.set_page_config(
         'About': "# Created by David Mejia for te *TFM*."
     }
     )
+st.set_option("client.showSidebarNavigation", True)
 
 st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')

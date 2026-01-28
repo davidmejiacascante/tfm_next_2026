@@ -1,3 +1,6 @@
+[client]
+showErrorDetails = "none"
+
 [theme]
 base="light" # Set the base to light mode
 primaryColor="#FF4B4B" # Primary accent color for interactive elements
