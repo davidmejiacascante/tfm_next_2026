@@ -2,20 +2,29 @@ import streamlit as st
 
 
 st.logo("img/logo.png")
-st.image("img\\logo.png")
-hello = st.write('Hello world as variable!')
-print(hello)
-st.title('Titulo')
-st.header('header')
-st.subheader('subheader')
+st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+st.header('Asignatura 5.Fuentes y Obtención de Datos.')
+st.subheader('Integrantes')
 st.code('ejemplo de codigo')
 st.text('ejemplo de texto')
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.header('1')
-with col2:
-    st.header('2')
-with col3:
-    st.header('3')
-with col4:
-    st.header('4')
+
+st.set_page_config(page_title="BurnoutGuard - Exploración inicial", layout="wide")
+
+st.title("BurnoutGuard - Exploración inicial (Asignatura 5)")
+st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
+
+data_path = Path("data_processed/burnoutguard_dataset.csv")
+if not data_path.exists():
+    st.warning("No encuentro data_processed/burnoutguard_dataset.csv. Ejecuta notebooks/02_clean_prepare.ipynb primero.")
+    st.stop()
+
+df = pd.read_csv(data_path)
+
+st.sidebar.header("Filtros")
+cols = df.columns.tolist()
+col_select = st.sidebar.multiselect("Columnas a mostrar", cols, default=cols[:10])
+
+st.dataframe(df[col_select].head(100))
+
+st.subheader("Resumen")
+st.write(df.describe(include="all").transpose().head(30))
