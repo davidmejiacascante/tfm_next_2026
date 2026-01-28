@@ -15,18 +15,8 @@ with col1:
 with col2:
     st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-    data_path = Path("data_processed/burnoutguard_dataset.csv")
-    if not data_path.exists():
-        st.warning("No encuentro data_processed/burnoutguard_dataset.csv. Ejecuta notebooks/02_clean_prepare.ipynb primero.")
-        #st.stop()
-
-    df = pd.read_csv(data_path)
-
-    st.sidebar.header("Filtros")
-    cols = df.columns.tolist()
-    col_select = st.sidebar.multiselect("Columnas a mostrar", cols, default=cols[:10])
-
-    st.dataframe(df[col_select].head(100))
+    #data_path = Path("data_processed/burnoutguard_dataset.csv")
+    
 with col3:
     st.subheader("Resumen")
     st.write(df.describe(include="all").transpose().head(30))
