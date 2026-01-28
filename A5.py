@@ -5,7 +5,7 @@ st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
 st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
 
-col1,col2 = st.columns([1,3]])
+col1,col2 = st.columns([1,3])
 with col1:
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
