@@ -12,13 +12,13 @@ with col1:
     st.subheader('Integrantes:')
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
     st.subheader('Enero 2026')
-with col2:
+with col2,clo3:
     st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
     #data_path = Path("data_processed/burnoutguard_dataset.csv")
     
-with col3:
-    st.subheader("Resumen")
+#with col3:
+    #st.subheader("Resumen")
     #st.write(df.describe(include="all").transpose().head(30))
 with col4:
     st.header('4')
