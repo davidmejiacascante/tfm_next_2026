@@ -1,11 +1,22 @@
 import streamlit as st
 
-st.set_page_config(page_title="BurnoutGuard - Exploración inicial", layout="wide")
+st.set_page_config(
+    page_title="BurnoutGuard - Exploración inicial", layout="wide"
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+    )
+
 st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
 st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
 
-col1,col2 = st.columns([1,3])
+col1,col2 = st.columns([1,4])
 with col1:
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
@@ -15,10 +26,3 @@ with col1:
 with col2:
     st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-    #data_path = Path("data_processed/burnoutguard_dataset.csv")
-    
-#with col3:
-    #st.subheader("Resumen")
-    #st.write(df.describe(include="all").transpose().head(30))
-#with col4:
-    #st.header('4')
