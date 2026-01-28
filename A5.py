@@ -8,16 +8,15 @@ st.logo("img/logo.png")
 #st.text('Xisca Sorell')
 #st.subheader('Integrantes:')
 #st.text('David Mejía Cascante | Daniel Vargas Salazar | Juan Luis Chávez Mejía | María Cubero Sandoval | Melany Jiménez Nin')
-
+st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+st.header('BURNOUTGUARD: SISTEMA DE DETECCIÓN TEMPRANA DE RIESGO DE BURNOUT')
 
 col1,col2,col3,col4 = st.columns(4)
 with col1:
-    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-    st.header('BURNOUTGUARD: SISTEMA DE DETECCIÓN TEMPRANA DE RIESGO DE BURNOUT')
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
-    st.text('David Mejía Cascante \n Daniel Vargas Salazar \n Juan Luis Chávez Mejía \n María Cubero Sandoval \n Melany Jiménez Nin')
+    st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
 with col2:
     st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
