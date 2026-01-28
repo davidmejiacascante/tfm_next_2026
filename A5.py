@@ -6,9 +6,8 @@ st.set_page_config(
     page_icon="🧊",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
+        'Get Help': 'mailto:david.mejia.cascante@gmail.com',
+        'About': "# Created by David Mejia for te *TFM*."
     }
     )
 
