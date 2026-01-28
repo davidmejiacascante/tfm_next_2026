@@ -3,10 +3,11 @@ import streamlit as st
 
 st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-st.header('Asignatura 5.Fuentes y Obtención de Datos.')
-st.subheader('Integrantes')
-st.code('ejemplo de codigo')
-st.text('ejemplo de texto')
+st.header('BURNOUTGUARD: SISTEMA DE DETECCIÓN TEMPRANA DE RIESGO DE BURNOUT')
+st.subheader('Profesaora:')
+st.text('Xisca Sorell')
+st.subheader('Integrantes:')
+st.text('David Mejía Cascante | Daniel Vargas Salazar | Juan Luis Chávez Mejía | María Cubero Sandoval | Melany Jiménez Nin')
 
 st.set_page_config(page_title="BurnoutGuard - Exploración inicial", layout="wide")
 
