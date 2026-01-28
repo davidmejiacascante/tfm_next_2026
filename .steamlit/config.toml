@@ -1,2 +1,7 @@
 [theme]
-base = "light"
+base="light" # Set the base to light mode
+primaryColor="#FF4B4B" # Primary accent color for interactive elements
+backgroundColor="#FFFFFF" # Background color for the main content area
+secondaryBackgroundColor="#F0F2F6" # Background color for the sidebar
+textColor="#31333F" # Color used for almost all text
+font="sans serif" # Font family for all text in the app
