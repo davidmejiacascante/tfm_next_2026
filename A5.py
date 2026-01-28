@@ -17,13 +17,13 @@ st.logo("img/logo.png")
 
 # Using "with" notation
 with st.sidebar:
-    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
+    st.title('Asignatura 5.Fuentes y Obtención de Datos.', alignment="center")
+    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.', alignment="center")
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
-    st.subheader('Enero 2026')
+    st.subheader('Enero 2026', alignment="center")
 
 # col1,col2 = st.columns([1,4])
 # with col1:
