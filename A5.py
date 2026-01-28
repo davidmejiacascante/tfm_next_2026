@@ -5,7 +5,7 @@ st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
 st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
 
-col1,col2,col3,col4 = st.columns(4)
+col1,col2 = st.columns([1,3]])
 with col1:
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
@@ -20,5 +20,5 @@ with col2,clo3:
 #with col3:
     #st.subheader("Resumen")
     #st.write(df.describe(include="all").transpose().head(30))
-with col4:
-    st.header('4')
+#with col4:
+    #st.header('4')
