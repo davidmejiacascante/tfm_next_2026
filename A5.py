@@ -16,6 +16,20 @@ st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
 st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
 
+
+# Using object notation
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
+
+# Using "with" notation
+with st.sidebar:
+    add_radio = st.radio(
+        "Choose a shipping method",
+        ("Standard (5-15 days)", "Express (2-5 days)")
+    )
+
 col1,col2 = st.columns([1,4])
 with col1:
     st.subheader('Profesaora:')
