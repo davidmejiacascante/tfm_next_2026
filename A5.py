@@ -23,7 +23,7 @@ with st.sidebar:
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
-    st.subheader('Enero 2026', alignment="center")
+    st.subheader('Enero 2026')
 
 # col1,col2 = st.columns([1,4])
 # with col1:
