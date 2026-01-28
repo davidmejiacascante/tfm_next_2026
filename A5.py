@@ -24,13 +24,16 @@ with st.sidebar:
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
     st.subheader('Enero 2026')
 
-col1,col2 = st.columns([1,4])
-with col1:
-    st.subheader('Profesaora:')
-    st.text('Xisca Sorell')
-    st.subheader('Integrantes:')
-    st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
-    st.subheader('Enero 2026')
-with col2:
-    st.title("DASHBOARD")
-    st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
+# col1,col2 = st.columns([1,4])
+# with col1:
+#     st.subheader('Profesaora:')
+#     st.text('Xisca Sorell')
+#     st.subheader('Integrantes:')
+#     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
+#     st.subheader('Enero 2026')
+# with col2:
+#     st.title("DASHBOARD")
+#     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
+
+st.title("DASHBOARD")
+st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
