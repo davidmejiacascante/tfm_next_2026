@@ -16,19 +16,13 @@ st.logo("img/logo.png")
 st.title('Asignatura 5.Fuentes y Obtención de Datos.')
 st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
 
-
-# Using object notation
-add_selectbox = st.sidebar.selectbox(
-    "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
-)
-
 # Using "with" notation
 with st.sidebar:
-    add_radio = st.radio(
-        "Choose a shipping method",
-        ("Standard (5-15 days)", "Express (2-5 days)")
-    )
+    st.subheader('Profesaora:')
+    st.text('Xisca Sorell')
+    st.subheader('Integrantes:')
+    st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
+    st.subheader('Enero 2026')
 
 col1,col2 = st.columns([1,4])
 with col1:
