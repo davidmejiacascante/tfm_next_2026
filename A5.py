@@ -17,8 +17,8 @@ st.logo("img/logo.png")
 
 # Using "with" notation
 with st.sidebar:
-    st.title('Asignatura 5.Fuentes y Obtención de Datos.', alignment='center')
-    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.', alignment='center')
+    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
