@@ -3,7 +3,7 @@ import streamlit as st
 st.set_page_config(
     page_title="BurnoutGuard - Exploración inicial", 
     layout="wide",
-    page_icon="🧊",
+    page_icon=":ambulance:",
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': 'mailto:david.mejia.cascante@gmail.com',
