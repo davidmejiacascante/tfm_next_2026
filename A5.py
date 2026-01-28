@@ -17,9 +17,9 @@ with col1:
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
-    st.text('David Mejía Cascante | Daniel Vargas Salazar | Juan Luis Chávez Mejía | María Cubero Sandoval | Melany Jiménez Nin')
+    st.text('David Mejía Cascante \n Daniel Vargas Salazar \n Juan Luis Chávez Mejía \n María Cubero Sandoval \n Melany Jiménez Nin')
 with col2:
-    st.title("BurnoutGuard - Exploración inicial (Asignatura 5)")
+    st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
     data_path = Path("data_processed/burnoutguard_dataset.csv")
     if not data_path.exists():
