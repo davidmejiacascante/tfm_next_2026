@@ -13,11 +13,12 @@ st.set_page_config(
 st.set_option("client.showSidebarNavigation", True)
 
 st.logo("img/logo.png")
-st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
+
 
 # Using "with" notation
 with st.sidebar:
+    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
