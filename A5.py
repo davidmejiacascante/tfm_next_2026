@@ -12,7 +12,7 @@ with col1:
     st.subheader('Integrantes:')
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
     st.subheader('Enero 2026')
-with col2,clo3:
+with col2:
     st.title("DASHBOARD")
     st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
     #data_path = Path("data_processed/burnoutguard_dataset.csv")
