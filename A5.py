@@ -19,6 +19,6 @@ with col2:
     
 with col3:
     st.subheader("Resumen")
-    st.write(df.describe(include="all").transpose().head(30))
+    #st.write(df.describe(include="all").transpose().head(30))
 with col4:
     st.header('4')
