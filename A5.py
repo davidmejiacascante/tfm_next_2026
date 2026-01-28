@@ -38,3 +38,4 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
+tab1, tab2 = st.tabs(["📈 Tab1", "🗃 Tab2"])
