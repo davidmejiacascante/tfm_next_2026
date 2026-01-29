@@ -1,6 +1,6 @@
-streamlit;
-pandas;
-requests;
-time;
-re;
-datetime;
+streamlit
+pandas
+requests
+time
+re
+datetime
