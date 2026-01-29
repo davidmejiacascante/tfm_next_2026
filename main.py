@@ -170,9 +170,6 @@ colA4.metric(label='promedio del balance vida-trabajo', value=round(df1['work_li
 #cantidad de keywords encontrados en todos los datos.
 #print(df1['keyword_count'].sum())
 colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=(df1['keyword_count'].sum()/df1['review_id'].nunique()), border=True)
-colA2.metric(label='', value=0, border=True)
-colA3.metric(label='', value=0, border=True)
-colA4.metric(label='', value=0, border=True)
 
 #cantidad de comentarios por empresa.
 #print(df1.groupby('company')['review_id'].count())
