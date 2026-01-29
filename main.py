@@ -5,6 +5,21 @@ import re
 from datetime import datetime
 import matplotlib.pyplot as plt
 from pathlib import Path
+import streamlit as st
+
+st.set_page_config(
+    page_title="BurnoutGuard - Exploración inicial", 
+    layout="wide",
+    page_icon=":ambulance:",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'mailto:david.mejia.cascante@gmail.com',
+        'About': "# Created by David Mejia for te *TFM*."
+    }
+    )
+st.set_option("client.showSidebarNavigation", True)
+
+st.logo("img/logo.png")
 
 COMPANIES = [
 		['DELOITTE',2763],
@@ -25,6 +40,25 @@ COMPANIES = [
 
 KEY_WORDS = ['burnout','exhaustion','depersonalization','reduced personal accomplishment','negative feedback','stress','excessive workload','work overload','role overload','job demands–resources model','customer-related stressors','emotional labor','difficult client','workplace incivility','abuse','psychosocial','job strain','effort–reward imbalance','employee well-being','work-related mental health','burnout','toxic','miserable','hell','bad']
 
+# Using "with" notation
+with st.sidebar:
+    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
+    st.subheader('Profesaora:')
+    st.text('Xisca Sorell')
+    st.subheader('Integrantes:')
+    st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
+    st.subheader('Enero 2026')
+
+st.title("DASHBOARD")
+st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
+tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":notebook: TEST"])
+
+with tab1:
+    st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
+    #st.image("https://static.streamlit.io/examples/cat.jpg", width=300)
+    #st.image("https://static.streamlit.io/examples/dog.jpg", width=300)
+
 
 #Ahora cargaremos en dataframes los diferentes archviso csv generados con los datos.
 def load_company_data():
@@ -43,13 +77,10 @@ def load_company_data():
 
 df = load_company_data()
 
-print(df.keys())
+#print(df.keys())
 
 df1 = df.drop(columns=['diversity_and_inclusion_rating','culture_and_values_rating','review_link','years_of_employment','not_helpful_count','helpful_count','business_outlook_rating','ceo_rating'])
 
-print(df1.keys())
-
-"""### 3.2 Revisión de tipos de datos."""
 
 df1['review_datetime'] = pd.to_datetime(df1['review_datetime'], errors='coerce')
 
@@ -77,7 +108,7 @@ df1['advice_to_management'] = df1['advice_to_management'].fillna('n/a').astype('
 #Valores nulos
 df1.isna().sum().sort_values(ascending=False)
 
-print("Valores duplicados en el dataset: ", df1.duplicated().sum())
+#print("Valores duplicados en el dataset: ", df1.duplicated().sum())
 
 df1.info()
 
@@ -93,37 +124,6 @@ df1['keyword_count'] += df1['cons'].str.count(pattern).fillna(0).astype(int)
 df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0).astype(int)
 
 df1.to_csv('reviews.csv', index=False)
-
-"""### 3.3 Valores atipicos."""
-
-# Eliminar nulos
-ratings = df1["rating"].dropna()
-
-# Cálculo de IQR
-Q1 = ratings.quantile(0.25)
-Q3 = ratings.quantile(0.75)
-IQR = Q3 - Q1
-
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
-
-# Extraer outliers
-outliers = df1[(df1["rating"] < lower_bound) | (df1["rating"] > upper_bound)]
-
-# Boxplot
-plt.figure()
-plt.boxplot(ratings)
-plt.title("Boxplot de rating")
-plt.ylabel("rating")
-plt.show()
-
-# Mostrar límites y outliers
-#print("Límite inferior:", lower_bound)
-#print("Límite superior:", upper_bound)
-#print("Outliers:")
-#print(outliers)
-
-"""### 3.4 Feature engineering."""
 
 from numpy import datetime64
 
@@ -157,75 +157,88 @@ def clasificar_variable(serie):
 
     return "Otro tipo"
 
-print("CLASIFICACIÓN AUTOMÁTICA")
+#print("CLASIFICACIÓN AUTOMÁTICA")
 
 for col in df1.columns:
     tipo_estadistico = clasificar_variable(df1[col])
-    print(f"{col}: {tipo_estadistico}")
+    #print(f"{col}: {tipo_estadistico}")
 
-"""## 4. Analisis exploratorio de datos (EDA).
 
-### 4.1 Análisis univariante:
-"""
-
+col1, col2, col3, col4 = st.columns(3)
 #Empresas distintas dentro del reporte.
-print(df1['company'].nunique())
+#print(df1['company'].nunique())
+col1.metric(label='Cantidad de compañias', value = df1['company'].nunique())
+
 
 #Cantidad de reportes.
-print(df1['review_id'].nunique())
+#print(df1['review_id'].nunique())
+col2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique())
 
 #Promedio del rating
-print(df['rating'].mean())
+#print(df1['rating'].mean())
+col3.metric(label='Promedio del rating de empresas', value = df1['rating'].mean())
 
 #Distintos Job Titles.
-print(df1['job_title'].nunique())
+#print(df1['job_title'].nunique())
+col4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique())
 
 #Distintos estados de empleamiento.
-print(df1['employment_status'].nunique())
+#print(df1['employment_status'].nunique())
 
 #Cantidad de trabajados activos.
-print(df1['is_current_employee'].value_counts())
+#print(df1['is_current_employee'].value_counts())
 
 #promedio de oportunidades laborares.
-print(df['career_opportunities_rating'].mean())
+#print(df['career_opportunities_rating'].mean())
 
 #promedio de beneficios y compensacion.
-print(df['compensation_and_benefits_rating'].mean())
+#print(df['compensation_and_benefits_rating'].mean())
 
 #Cantidad que recomendarian la empresa a un amigo.
-print(df1['recommend_to_friend_rating'].value_counts())
+#print(df1['recommend_to_friend_rating'].value_counts())
 
 #promedio del balance vida-trabajo
-print(df['work_life_balance_rating'].mean())
+#print(df['work_life_balance_rating'].mean())
 
 #cantidad de keywords encontrados en todos los datos.
-print(df1['keyword_count'].sum())
-
-"""### 4.2 Análisis Bivariante"""
+#print(df1['keyword_count'].sum())
 
 #cantidad de comentarios por empresa.
-print(df1.groupby('company')['review_id'].count())
+#print(df1.groupby('company')['review_id'].count())
 
 #promedio del rating por empresa.
-print(df1.groupby('company')['rating'].mean())
+#print(df1.groupby('company')['rating'].mean())
 
 #tipos de empleados por empresa.
-print(df1.groupby('company')['employment_status'].value_counts())
+#print(df1.groupby('company')['employment_status'].value_counts())
 
 #Situacion laboral por empresa.
-print(df1.groupby('company')['is_current_employee'].value_counts())
+#print(df1.groupby('company')['is_current_employee'].value_counts())
 
 #oportunidades laborales por empresa.
-print(df1.groupby('company')['career_opportunities_rating'].mean())
+#print(df1.groupby('company')['career_opportunities_rating'].mean())
 
 #compensacion y beneficios por empresa.
-print(df1.groupby('company')['compensation_and_benefits_rating'].mean())
+#print(df1.groupby('company')['compensation_and_benefits_rating'].mean())
 
 #recomendaciones a amigos por empresa.
-print(df1.groupby('company')['recommend_to_friend_rating'].value_counts())
+#print(df1.groupby('company')['recommend_to_friend_rating'].value_counts())
 
 #balance de trabajo y vida personal por empresa.
-print(df1.groupby('company')['work_life_balance_rating'].mean())
+#print(df1.groupby('company')['work_life_balance_rating'].mean())
 
 #cantidad de keywords encontrados por empresa.
-print(df1.groupby('company')['keyword_count'].sum())
+#print(df1.groupby('company')['keyword_count'].sum())
+
+with tab2:
+    st.header("A dog")
+    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+with tab3:
+    col1,col2 = st.columns(2)
+    with col1:
+        st.header("COL 1")
+        st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    with col2:
+        st.header("COL 2")
+        st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
