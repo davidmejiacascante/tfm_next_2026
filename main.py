@@ -125,62 +125,28 @@ df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0)
 
 df1.to_csv('reviews.csv', index=False)
 
-from numpy import datetime64
-
-def clasificar_variable(serie):
-    tipo = serie.dtype
-
-    # Si es un número entero → numérica discreta
-    if tipo == "Int64":
-        return "Numérica discreta"
-
-    # Si es número con decimales → numérica continua
-    if tipo == "Float64":
-        return "Numérica continua"
-
-    #
-    if tipo == "datetime64[ns]":
-        return "Categórica ordinal (fecha)"
-
-    # Si es texto (object) → categórica
-    if tipo == "object" or tipo == "category":
-        # contamos cuántas categorías diferentes tiene
-        categorias = serie.nunique()
-
-        # si solo hay dos categorías → binaria
-        if categorias == 2:
-            return "Categórica binaria"
-
-        # si hay más de dos → nominal
-        else:
-            return "Categórica nominal"
-
-    return "Otro tipo"
-
-#print("CLASIFICACIÓN AUTOMÁTICA")
-
 for col in df1.columns:
     tipo_estadistico = clasificar_variable(df1[col])
     #print(f"{col}: {tipo_estadistico}")
 
 
-col1, col2, col3, col4 = st.columns(3)
+colA1, colA2, colA3, colA4 = st.columns(3)
 #Empresas distintas dentro del reporte.
 #print(df1['company'].nunique())
-col1.metric(label='Cantidad de compañias', value = df1['company'].nunique())
+with colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique())
 
 
 #Cantidad de reportes.
 #print(df1['review_id'].nunique())
-col2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique())
+with colA2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique())
 
 #Promedio del rating
 #print(df1['rating'].mean())
-col3.metric(label='Promedio del rating de empresas', value = df1['rating'].mean())
+with colA3.metric(label='Promedio del rating de empresas', value = df1['rating'].mean())
 
 #Distintos Job Titles.
 #print(df1['job_title'].nunique())
-col4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique())
+with colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique())
 
 #Distintos estados de empleamiento.
 #print(df1['employment_status'].nunique())
