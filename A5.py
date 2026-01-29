@@ -13,8 +13,19 @@ st.set_page_config(
 st.set_option("client.showSidebarNavigation", True)
 
 st.logo("img/logo.png")
+<<<<<<< HEAD
+st.title('Asignatura 5.Fuentes y Obtención de Datos.')
+st.header('Asignatura 5.Fuentes y Obtención de Datos.')
+st.subheader('Integrantes')
+st.text('Daniel Vargas Salazar, David Mejía Cascante, María Cubero Sandoval, Juan Luis Chávez, Melany Jiménez Nin.')
+=======
+>>>>>>> be26bf10f7592461196efbfb7137ff8f34d4f513
 
 
+<<<<<<< HEAD
+st.title("BurnoutGuard - Exploración inicial (Asignatura 5)")
+st.write("Explorador simple para el dataset procesado.")
+=======
 # Using "with" notation
 with st.sidebar:
     st.title('Asignatura 5.Fuentes y Obtención de Datos.')
@@ -24,6 +35,7 @@ with st.sidebar:
     st.subheader('Integrantes:')
     st.text('David Mejía Cascante\nDaniel Vargas Salazar\nJuan Luis Chávez Mejía\nMaría Cubero Sandoval\nMelany Jiménez Nin')
     st.subheader('Enero 2026')
+>>>>>>> be26bf10f7592461196efbfb7137ff8f34d4f513
 
 # col1,col2 = st.columns([1,4])
 # with col1:
@@ -38,7 +50,7 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-tab1, tab2 = st.tabs(["📈 Tab1", "🗃 Tab2"])
+tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE"])
 
 with tab1:
     st.header("A cat")
