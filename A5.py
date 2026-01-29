@@ -41,7 +41,7 @@ st.write("Explorador simple para el dataset procesado. Ejecutar después del Not
 tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":notebook: TEST"])
 
 with tab1:
-    st.header("A cat")
+    st.header("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
     st.image("https://static.streamlit.io/examples/cat.jpg", width=300)
     st.image("https://static.streamlit.io/examples/dog.jpg", width=300)
 with tab2:
