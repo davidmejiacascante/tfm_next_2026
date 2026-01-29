@@ -43,7 +43,8 @@ tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE"])
 with tab1:
     st.header("A cat")
     st.image("https://static.streamlit.io/examples/cat.jpg", width=300)
-    st.image("https://static.streamlit.io/examples/cat2.jpg", width=300)
+    st.image("https://static.streamlit.io/examples/bird.jpg", width=300)
 with tab2:
     st.header("A dog")
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
