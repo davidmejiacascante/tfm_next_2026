@@ -13,19 +13,9 @@ st.set_page_config(
 st.set_option("client.showSidebarNavigation", True)
 
 st.logo("img/logo.png")
-<<<<<<< HEAD
-st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-st.header('Asignatura 5.Fuentes y Obtención de Datos.')
-st.subheader('Integrantes')
-st.text('Daniel Vargas Salazar, David Mejía Cascante, María Cubero Sandoval, Juan Luis Chávez, Melany Jiménez Nin.')
-=======
->>>>>>> be26bf10f7592461196efbfb7137ff8f34d4f513
 
 
-# Using "with" notation
-with st.sidebar:
-    st.title('Asignatura 5.Fuentes y Obtención de Datos.')
-    st.header('BURNOUTGUARD: Sistema De Detección Temprana De Riesgo De Burnout.')
+istema De Detección Temprana De Riesgo De Burnout.')
     st.subheader('Profesaora:')
     st.text('Xisca Sorell')
     st.subheader('Integrantes:')
