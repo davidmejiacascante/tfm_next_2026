@@ -38,13 +38,21 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE"])
+tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":notebook: TEST"])
 
 with tab1:
     st.header("A cat")
     st.image("https://static.streamlit.io/examples/cat.jpg", width=300)
-    st.image("https://static.streamlit.io/examples/bird.jpg", width=300)
+    st.image("https://static.streamlit.io/examples/dog.jpg", width=300)
 with tab2:
     st.header("A dog")
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+with tab3:
+    col1,col2 = st.columns(2)
+    with col1:
+        st.header("COL 1")
+        st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    with col2:
+        st.header("COL 2")
+        st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
