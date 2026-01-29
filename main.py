@@ -125,76 +125,94 @@ df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0)
 
 df1.to_csv('reviews.csv', index=False)
 
-for col in df1.columns:
-    tipo_estadistico = clasificar_variable(df1[col])
-    #print(f"{col}: {tipo_estadistico}")
-
-
-colA1, colA2, colA3, colA4 = st.columns(3)
+colA1, colA2, colA3, colA4 = st.columns(4)
 #Empresas distintas dentro del reporte.
 #print(df1['company'].nunique())
-colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique())
+colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique(), border=True)
 
 
 #Cantidad de reportes.
 #print(df1['review_id'].nunique())
-colA2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique())
+colA2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique(), border=True)
 
 #Promedio del rating
 #print(df1['rating'].mean())
-colA3.metric(label='Promedio del rating de empresas', value = df1['rating'].mean())
+colA3.metric(label='Promedio del rating de empresas', value = round(df1['rating'].mean(),2), border=True)
 
 #Distintos Job Titles.
 #print(df1['job_title'].nunique())
-colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique())
+colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique(), border=True)
 
 #Distintos estados de empleamiento.
 #print(df1['employment_status'].nunique())
+colA1.metric(label='Distintos estados de empleamiento', value=df1['employment_status'].nunique(), border=True)
 
-#Cantidad de trabajados activos.
+#Cantidad de trabajadores activos.
 #print(df1['is_current_employee'].value_counts())
+#colA2.metric(label='Cantidad de trabajadores activos', value= str(df1['is_current_employee'].value_counts()))
 
 #promedio de oportunidades laborares.
 #print(df['career_opportunities_rating'].mean())
+colA2.metric(label='Promedio de oportunidades laborares', value=round(df['career_opportunities_rating'].mean(),2), border=True)
 
 #promedio de beneficios y compensacion.
 #print(df['compensation_and_benefits_rating'].mean())
+colA3.metric(label='Promedio de beneficios y compensacion', value=round(df['compensation_and_benefits_rating'].mean(),2), border=True)
 
 #Cantidad que recomendarian la empresa a un amigo.
 #print(df1['recommend_to_friend_rating'].value_counts())
+#colA1.metric(label='Cantidad que recomendarian la empresa a un amigo', value=df1['recommend_to_friend_rating'].value_counts().to_string())
 
 #promedio del balance vida-trabajo
-#print(df['work_life_balance_rating'].mean())
+#print(df1['work_life_balance_rating'].mean())
+colA4.metric(label='promedio del balance vida-trabajo', value=round(df1['work_life_balance_rating'].mean(),2), border=True)
 
 #cantidad de keywords encontrados en todos los datos.
 #print(df1['keyword_count'].sum())
+colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=(df1['keyword_count'].sum()/df1['review_id'].nunique()), border=True)
+colA2.metric(label='', value=0, border=True)
+colA3.metric(label='', value=0, border=True)
+colA4.metric(label='', value=0, border=True)
 
 #cantidad de comentarios por empresa.
 #print(df1.groupby('company')['review_id'].count())
+colA1 = st.text('Cantidad de comentarios por empresa')
+colA1 = st.dataframe(df1.groupby('company')['review_id'].count(),width='content')
 
 #promedio del rating por empresa.
 #print(df1.groupby('company')['rating'].mean())
+colA2 = st.text('Promedio del rating por empresa')
+colA2 = st.dataframe(df1.groupby('company')['rating'].mean(),width='content')
 
 #tipos de empleados por empresa.
 #print(df1.groupby('company')['employment_status'].value_counts())
 
+
 #Situacion laboral por empresa.
 #print(df1.groupby('company')['is_current_employee'].value_counts())
+
 
 #oportunidades laborales por empresa.
 #print(df1.groupby('company')['career_opportunities_rating'].mean())
 
+
 #compensacion y beneficios por empresa.
 #print(df1.groupby('company')['compensation_and_benefits_rating'].mean())
+
 
 #recomendaciones a amigos por empresa.
 #print(df1.groupby('company')['recommend_to_friend_rating'].value_counts())
 
+
 #balance de trabajo y vida personal por empresa.
 #print(df1.groupby('company')['work_life_balance_rating'].mean())
+colA3 = st.text('Balance de trabajo y vida personal por empresa')
+colA3 = st.dataframe(df1.groupby('company')['work_life_balance_rating'].mean(),width='content')
 
 #cantidad de keywords encontrados por empresa.
 #print(df1.groupby('company')['keyword_count'].sum())
+colA4 = st.text('Cantidad de keywords encontrados por empresa')
+colA4 = st.dataframe(df1.groupby('company')['keyword_count'].sum(),width='content')
 
 with tab2:
     st.header("A dog")
