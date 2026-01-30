@@ -132,8 +132,8 @@ colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique(), b
 
 
 #Cantidad de reportes.
-#print(df1['review_id'].nunique())
-colA2.metric(label='Cantidad de reportes', value = df1['review_id'].nunique(), border=True)
+treview = df1['review_id'].nunique()
+colA2.metric(label='Cantidad de reportes', value = treview, border=True)
 
 #Promedio del rating
 #print(df1['rating'].mean())
@@ -165,11 +165,23 @@ colA3.metric(label='Promedio de beneficios y compensacion', value=round(df['comp
 
 #promedio del balance vida-trabajo
 #print(df1['work_life_balance_rating'].mean())
-colA4.metric(label='promedio del balance vida-trabajo', value=round(df1['work_life_balance_rating'].mean(),2), border=True)
+colA4.metric(label='Promedio del balance vida-trabajo', value=round(df1['work_life_balance_rating'].mean(),2), border=True)
 
 #cantidad de keywords encontrados en todos los datos.
 #print(df1['keyword_count'].sum())
-colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=(df1['keyword_count'].sum()/df1['review_id'].nunique()), border=True)
+colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=treview, border=True)
+
+colA2.metric(label='Porcentaje de keywords encontrados en todos los datos', value=(str(f'{round(df1['keyword_count'].sum()/df1['review_id'].nunique(),2)},%')), delta=treview, border=True)
+
+dftt = pd.DataFrame(df1.groupby('company')['keyword_count'].sum())
+tcount1 = dftt['keyword_count'].max()
+tcompany1 = dftt['keyword_count'].idxmax()
+colA3.metric(label='Compañia con mas keywords encontrados:', value=tcompany1, delta=tcount1, border=True)
+
+dft2 = pd.DataFrame(df1.groupby('company')['review_id'].count())
+tcompany2 = dftt['keyword_count'].idxmax()
+tcount2 = dft2.loc[tcompany2, 'review_id']
+colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
 
 #cantidad de comentarios por empresa.
 #print(df1.groupby('company')['review_id'].count())
