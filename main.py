@@ -54,7 +54,6 @@ st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
 tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":racing_car: API Tables"])
 
-
 #Ahora cargaremos en dataframes los diferentes archviso csv generados con los datos.
 def load_company_data():
   df = pd.DataFrame()
@@ -72,10 +71,7 @@ def load_company_data():
 
 df = load_company_data()
 
-#print(df.keys())
-
 df1 = df.drop(columns=['diversity_and_inclusion_rating','culture_and_values_rating','review_link','years_of_employment','not_helpful_count','helpful_count','business_outlook_rating','ceo_rating'])
-
 
 df1['review_datetime'] = pd.to_datetime(df1['review_datetime'], errors='coerce')
 df1['company_id'] = pd.to_numeric(df1['company_id'], errors='coerce').astype('Int64')
