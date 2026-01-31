@@ -184,7 +184,7 @@ with tab3:
         #cantidad de comentarios por empresa.
         #print(df1.groupby('company')['review_id'].count())
         colC1 = st.text('Cantidad de comentarios por empresa')
-        colC1 = st.dataframe(df1.groupby('company')['review_id'].count(),width='content')
+        colC1 = st.dataframe(df1.groupby('company')['review_id'].count())
 
         #balance de trabajo y vida personal por empresa.
         #print(df1.groupby('company')['work_life_balance_rating'].mean())
@@ -194,7 +194,7 @@ with tab3:
         #promedio del rating por empresa.
         #print(df1.groupby('company')['rating'].mean())
         colC2 = st.text('Promedio del rating por empresa')
-        colC2 = st.dataframe(df1.groupby('company')['rating'].mean(),width='content')
+        colC2 = st.dataframe(df1.groupby('company')['rating'].mean())
         
         #cantidad de keywords encontrados por empresa.
         #print(df1.groupby('company')['keyword_count'].sum())
