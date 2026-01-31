@@ -54,11 +54,6 @@ st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
 tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":racing_car: API Tables"])
 
-with tab1:
-    st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
-    #st.image("https://static.streamlit.io/examples/cat.jpg", width=300)
-    #st.image("https://static.streamlit.io/examples/dog.jpg", width=300)
-
 
 #Ahora cargaremos en dataframes los diferentes archviso csv generados con los datos.
 def load_company_data():
@@ -83,21 +78,18 @@ df1 = df.drop(columns=['diversity_and_inclusion_rating','culture_and_values_rati
 
 
 df1['review_datetime'] = pd.to_datetime(df1['review_datetime'], errors='coerce')
-
 df1['company_id'] = pd.to_numeric(df1['company_id'], errors='coerce').astype('Int64')
 df1['career_opportunities_rating'] = pd.to_numeric(df1['career_opportunities_rating'], errors='coerce').astype('Int64')
 df1['compensation_and_benefits_rating'] = pd.to_numeric(df1['compensation_and_benefits_rating'], errors='coerce').astype('Int64')
 df1['senior_management_rating'] = pd.to_numeric(df1['senior_management_rating'], errors='coerce').astype('Int64')
 df1['work_life_balance_rating'] = pd.to_numeric(df1['work_life_balance_rating'], errors='coerce').astype('Int64')
 df1['rating'] = pd.to_numeric(df1['rating'], errors='coerce').astype('Int64')
-
 df1['is_current_employee'] = df1['is_current_employee'].astype('category')
 df1['employment_status'] = df1['employment_status'].astype('category')
 df1['job_title'] = df1['job_title'].astype('category')
 df1['location'] = df1['location'].astype('category')
 df1['language'] = df1['language'].astype('category')
 df1['recommend_to_friend_rating'] = df1['recommend_to_friend_rating'].astype('category')
-
 df1['review_id'] = df1['review_id'].fillna('n/a').astype('string')
 df1['summary'] = df1['summary'].fillna('n/a').astype('string')
 df1['company'] = df1['company'].fillna('n/a').astype('string')
@@ -125,54 +117,56 @@ df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0)
 
 df1.to_csv('reviews.csv', index=False)
 
-colA1, colA2, colA3, colA4 = st.columns(4)
-#Empresas distintas dentro del reporte.
-#print(df1['company'].nunique())
-colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique(), border=True)
+with tab1:
+    st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
+    colA1, colA2, colA3, colA4 = st.columns(4)
+    #Empresas distintas dentro del reporte.
+    #print(df1['company'].nunique())
+    colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique(), border=True)
 
-#Cantidad de reportes.
-treview = df1['review_id'].nunique()
-colA2.metric(label='Cantidad de reportes', value = treview, border=True)
+    #Cantidad de reportes.
+    treview = df1['review_id'].nunique()
+    colA2.metric(label='Cantidad de reportes', value = treview, border=True)
 
-#Promedio del rating
-#print(df1['rating'].mean())
-colA3.metric(label='Promedio del rating de empresas', value = round(df1['rating'].mean(),2), border=True)
+    #Promedio del rating
+    #print(df1['rating'].mean())
+    colA3.metric(label='Promedio del rating de empresas', value = round(df1['rating'].mean(),2), border=True)
 
-#Distintos Job Titles.
-#print(df1['job_title'].nunique())
-colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique(), border=True)
+    #Distintos Job Titles.
+    #print(df1['job_title'].nunique())
+    colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique(), border=True)
 
-#Distintos estados de empleamiento.
-#print(df1['employment_status'].nunique())
-colA1.metric(label='Distintos estados de empleamiento', value=df1['employment_status'].nunique(), border=True)
+    #Distintos estados de empleamiento.
+    #print(df1['employment_status'].nunique())
+    colA1.metric(label='Distintos estados de empleamiento', value=df1['employment_status'].nunique(), border=True)
 
-#promedio de oportunidades laborares.
-#print(df['career_opportunities_rating'].mean())
-colA2.metric(label='Promedio de oportunidades laborares', value=round(df['career_opportunities_rating'].mean(),2), border=True)
+    #promedio de oportunidades laborares.
+    #print(df['career_opportunities_rating'].mean())
+    colA2.metric(label='Promedio de oportunidades laborares', value=round(df['career_opportunities_rating'].mean(),2), border=True)
 
-#promedio de beneficios y compensacion.
-#print(df['compensation_and_benefits_rating'].mean())
-colA3.metric(label='Promedio de beneficios y compensacion', value=round(df['compensation_and_benefits_rating'].mean(),2), border=True)
+    #promedio de beneficios y compensacion.
+    #print(df['compensation_and_benefits_rating'].mean())
+    colA3.metric(label='Promedio de beneficios y compensacion', value=round(df['compensation_and_benefits_rating'].mean(),2), border=True)
 
-#promedio del balance vida-trabajo
-#print(df1['work_life_balance_rating'].mean())
-colA4.metric(label='Promedio del balance vida-trabajo', value=round(df1['work_life_balance_rating'].mean(),2), border=True)
+    #promedio del balance vida-trabajo
+    #print(df1['work_life_balance_rating'].mean())
+    colA4.metric(label='Promedio del balance vida-trabajo', value=round(df1['work_life_balance_rating'].mean(),2), border=True)
 
-#cantidad de keywords encontrados en todos los datos.
-#print(df1['keyword_count'].sum())
-colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=treview, border=True)
+    #cantidad de keywords encontrados en todos los datos.
+    #print(df1['keyword_count'].sum())
+    colA1.metric(label='Cantidad de keywords encontrados en todos los datos', value=df1['keyword_count'].sum(), delta=treview, border=True)
 
-colA2.metric(label='Porcentaje de keywords encontrados en todos los datos', value=(str(f'{round(df1['keyword_count'].sum()/df1['review_id'].nunique(),2)},%')), delta=treview, border=True)
+    colA2.metric(label='Porcentaje de keywords encontrados en todos los datos', value=(str(f'{round(df1['keyword_count'].sum()/df1['review_id'].nunique(),2)},%')), delta=treview, border=True)
 
-dftt = pd.DataFrame(df1.groupby('company')['keyword_count'].sum())
-tcount1 = dftt['keyword_count'].max()
-tcompany1 = dftt['keyword_count'].idxmax()
-colA3.metric(label='Compañia con mas keywords encontrados:', value=tcompany1, delta=tcount1, border=True)
+    dftt = pd.DataFrame(df1.groupby('company')['keyword_count'].sum())
+    tcount1 = dftt['keyword_count'].max()
+    tcompany1 = dftt['keyword_count'].idxmax()
+    colA3.metric(label='Compañia con mas keywords encontrados:', value=tcompany1, delta=tcount1, border=True)
 
-dft2 = pd.DataFrame(df1.groupby('company')['review_id'].count())
-tcompany2 = dftt['keyword_count'].idxmax()
-tcount2 = dft2.loc[tcompany2, 'review_id']
-colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
+    dft2 = pd.DataFrame(df1.groupby('company')['review_id'].count())
+    tcompany2 = dftt['keyword_count'].idxmax()
+    tcount2 = dft2.loc[tcompany2, 'review_id']
+    colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
 
 with tab2:
     st.header("A dog")
