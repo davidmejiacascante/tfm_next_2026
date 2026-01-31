@@ -52,7 +52,7 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE"])
+tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":racecar: API Tables"])
 
 with tab1:
     st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
@@ -147,10 +147,6 @@ colA4.metric(label='Distintos Job Titles', value=df1['job_title'].nunique(), bor
 #print(df1['employment_status'].nunique())
 colA1.metric(label='Distintos estados de empleamiento', value=df1['employment_status'].nunique(), border=True)
 
-#Cantidad de trabajadores activos.
-#print(df1['is_current_employee'].value_counts())
-#colA2.metric(label='Cantidad de trabajadores activos', value= str(df1['is_current_employee'].value_counts()))
-
 #promedio de oportunidades laborares.
 #print(df['career_opportunities_rating'].mean())
 colA2.metric(label='Promedio de oportunidades laborares', value=round(df['career_opportunities_rating'].mean(),2), border=True)
@@ -158,10 +154,6 @@ colA2.metric(label='Promedio de oportunidades laborares', value=round(df['career
 #promedio de beneficios y compensacion.
 #print(df['compensation_and_benefits_rating'].mean())
 colA3.metric(label='Promedio de beneficios y compensacion', value=round(df['compensation_and_benefits_rating'].mean(),2), border=True)
-
-#Cantidad que recomendarian la empresa a un amigo.
-#print(df1['recommend_to_friend_rating'].value_counts())
-#colA1.metric(label='Cantidad que recomendarian la empresa a un amigo', value=df1['recommend_to_friend_rating'].value_counts().to_string())
 
 #promedio del balance vida-trabajo
 #print(df1['work_life_balance_rating'].mean())
@@ -183,55 +175,29 @@ tcompany2 = dftt['keyword_count'].idxmax()
 tcount2 = dft2.loc[tcompany2, 'review_id']
 colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
 
-#cantidad de comentarios por empresa.
-#print(df1.groupby('company')['review_id'].count())
-colA1 = st.text('Cantidad de comentarios por empresa')
-colA1 = st.dataframe(df1.groupby('company')['review_id'].count(),width='content')
-
-#promedio del rating por empresa.
-#print(df1.groupby('company')['rating'].mean())
-colA2 = st.text('Promedio del rating por empresa')
-colA2 = st.dataframe(df1.groupby('company')['rating'].mean(),width='content')
-
-#tipos de empleados por empresa.
-#print(df1.groupby('company')['employment_status'].value_counts())
-
-
-#Situacion laboral por empresa.
-#print(df1.groupby('company')['is_current_employee'].value_counts())
-
-
-#oportunidades laborales por empresa.
-#print(df1.groupby('company')['career_opportunities_rating'].mean())
-
-
-#compensacion y beneficios por empresa.
-#print(df1.groupby('company')['compensation_and_benefits_rating'].mean())
-
-
-#recomendaciones a amigos por empresa.
-#print(df1.groupby('company')['recommend_to_friend_rating'].value_counts())
-
-
-#balance de trabajo y vida personal por empresa.
-#print(df1.groupby('company')['work_life_balance_rating'].mean())
-colA3 = st.text('Balance de trabajo y vida personal por empresa')
-colA3 = st.dataframe(df1.groupby('company')['work_life_balance_rating'].mean(),width='content')
-
-#cantidad de keywords encontrados por empresa.
-#print(df1.groupby('company')['keyword_count'].sum())
-colA4 = st.text('Cantidad de keywords encontrados por empresa')
-colA4 = st.dataframe(df1.groupby('company')['keyword_count'].sum(),width='content')
-
 with tab2:
     st.header("A dog")
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
-#with tab3:
-    #col1,col2 = st.columns(2)
-    #with col1:
-        #st.header("COL 1")
-        #st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
-    #with col2:
-        #st.header("COL 2")
-        #st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+with tab3:
+    col1,col2 = st.columns(2)
+    with colC1:
+        #cantidad de comentarios por empresa.
+        #print(df1.groupby('company')['review_id'].count())
+        colC1 = st.text('Cantidad de comentarios por empresa')
+        colC1 = st.dataframe(df1.groupby('company')['review_id'].count(),width='content')
+
+        #balance de trabajo y vida personal por empresa.
+        #print(df1.groupby('company')['work_life_balance_rating'].mean())
+        colC1 = st.text('Balance de trabajo y vida personal por empresa')
+        colC1 = st.dataframe(df1.groupby('company')['work_life_balance_rating'].mean(),width='content')
+    with colC2:
+        #promedio del rating por empresa.
+        #print(df1.groupby('company')['rating'].mean())
+        colC2 = st.text('Promedio del rating por empresa')
+        colC2 = st.dataframe(df1.groupby('company')['rating'].mean(),width='content')
+        
+        #cantidad de keywords encontrados por empresa.
+        #print(df1.groupby('company')['keyword_count'].sum())
+        colC2 = st.text('Cantidad de keywords encontrados por empresa')
+        colC2 = st.dataframe(df1.groupby('company')['keyword_count'].sum(),width='content')
