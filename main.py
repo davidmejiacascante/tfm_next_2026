@@ -169,7 +169,7 @@ with tab1:
     colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
 
 with tab2:
-    st.header("A dog")
+    st.header("Analisis del conjunto de datos de Kaggle: Global Workplace Stress and Mental Health Survey.")
     st.text('Pagina bajo construcción.')
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
 with tab3:
