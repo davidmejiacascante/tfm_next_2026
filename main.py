@@ -52,7 +52,7 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":notebook: TEST"])
+tab1, tab2 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE"])
 
 with tab1:
     st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
