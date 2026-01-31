@@ -118,7 +118,7 @@ df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0)
 df1.to_csv('reviews.csv', index=False)
 
 with tab1:
-    st.text("Este tablero presenta una exploracion de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.\nEsta exploración permite identificar compañías que suelen hacer que sus empleados tengan estrés, se sientan sobre trabajados y eventualmente los lleve al burn out.")
+    st.text("Este tablero presenta una exploracion de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.\nEsta exploracion permite identificar compañías que suelen hacer que sus empleados tengan estrés, se sientan sobre trabajados y eventualmente los lleve al burn out.")
     colA1, colA2, colA3, colA4 = st.columns(4)
     #Empresas distintas dentro del reporte.
     #print(df1['company'].nunique())
