@@ -189,7 +189,7 @@ with tab3:
         #balance de trabajo y vida personal por empresa.
         #print(df1.groupby('company')['work_life_balance_rating'].mean())
         colC1 = st.text('Balance de trabajo y vida personal por empresa')
-        colC1 = st.dataframe(df1.groupby('company')['work_life_balance_rating'].mean(),width='content')
+        colC1 = st.dataframe(df1.groupby('company')['work_life_balance_rating'].mean(),)
     with colC2:
         #promedio del rating por empresa.
         #print(df1.groupby('company')['rating'].mean())
@@ -199,4 +199,4 @@ with tab3:
         #cantidad de keywords encontrados por empresa.
         #print(df1.groupby('company')['keyword_count'].sum())
         colC2 = st.text('Cantidad de keywords encontrados por empresa')
-        colC2 = st.dataframe(df1.groupby('company')['keyword_count'].sum(),width='content')
+        colC2 = st.dataframe(df1.groupby('company')['keyword_count'].sum())
