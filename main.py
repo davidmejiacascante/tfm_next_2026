@@ -52,7 +52,7 @@ with st.sidebar:
 
 st.title("DASHBOARD")
 st.write("Explorador simple para el dataset procesado. Ejecutar después del Notebook 02.")
-tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":racecar: API Tables"])
+tab1, tab2, tab3 = st.tabs([":rocket: API", ":floppy_disk: KAGGLE", ":racing_car: API Tables"])
 
 with tab1:
     st.text("Este tablero presenta una identificación exploratoria de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.")
@@ -130,7 +130,6 @@ colA1, colA2, colA3, colA4 = st.columns(4)
 #print(df1['company'].nunique())
 colA1.metric(label='Cantidad de compañias', value = df1['company'].nunique(), border=True)
 
-
 #Cantidad de reportes.
 treview = df1['review_id'].nunique()
 colA2.metric(label='Cantidad de reportes', value = treview, border=True)
@@ -180,7 +179,7 @@ with tab2:
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
 with tab3:
-    col1,col2 = st.columns(2)
+    colC1,colC2 = st.columns(2)
     with colC1:
         #cantidad de comentarios por empresa.
         #print(df1.groupby('company')['review_id'].count())
