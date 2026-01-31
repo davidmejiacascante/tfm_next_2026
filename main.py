@@ -170,7 +170,7 @@ with tab1:
 
 with tab2:
     st.header("A dog")
-    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    st.text('Pagina bajo construcción.')
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
 with tab3:
     colC1,colC2 = st.columns(2)
