@@ -228,7 +228,7 @@ with tab2:
     with col2:
         st.subheader('Filtered Data')
         dynamic_filters.display_df()
-        table
+        #table
     
    
 with tab3:
