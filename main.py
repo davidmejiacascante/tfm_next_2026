@@ -6,6 +6,9 @@ from datetime import datetime
 #import matplotlib.pyplot as plt
 from pathlib import Path
 import streamlit as st
+import kagglehub
+from kagglehub import KaggleDatasetAdapter
+from streamlit_dynamic_filters import DynamicFilters
 
 st.set_page_config(
     page_title="BurnoutGuard - Exploración inicial", 
@@ -113,6 +116,52 @@ df1['keyword_count'] += df1['advice_to_management'].str.count(pattern).fillna(0)
 
 df1.to_csv('reviews.csv', index=False)
 
+### >>>-----TAB2-----<<<
+# Set the path to the file you'd like to load
+file_path = "stress_data.csv"
+# Load the latest version
+dt = kagglehub.dataset_load(
+  KaggleDatasetAdapter.PANDAS,
+  "mutindafestus/global-workplace-stress-and-mental-health-survey/versions/1", # Explicitly specify version 1
+  file_path,
+  # Provide any additional arguments like
+  # sql_query or pandas_kwargs. See the
+  # documenation for more information:
+  # https://github.com/Kaggle/kagglehub/blob/main/README.md#kaggledatasetadapterpandas
+)
+
+#exportamos los datos a un DataFrame
+data1 = pd.DataFrame(dt)
+
+#Reclasificamos las columnas como strings
+for col in data1.columns:
+    data1[col] = data1[col].fillna('n/a').astype('string')
+
+data2 = data1
+for col in data2.columns:
+    data2[col] = data2[col].astype('category')
+data2['Age'].value_counts()
+data2['Gender'].value_counts()
+data2['Industry'].value_counts()
+data2['JobRole'].value_counts()
+data2['Region'].value_counts()
+data2['WorkLocation'].value_counts()
+data2['AccessMH'].value_counts()
+data2['Industry'].groupby(data2['Gender']).value_counts()
+data2['Gender'].groupby(data2['WorkLocation']).value_counts()
+data2['WorkLocation'].groupby(data2['Region']).value_counts(dropna=True)
+data2['AccessMH'].groupby(data2['WorkLocation']).value_counts()
+data2.groupby(['wp1','wp2','wp3','wp4']).agg(
+    count=("Gender", "count"))
+
+cols = ["wp1", "wp2", "wp3", "wp4"]
+table = (
+    data2[cols]
+    .apply(lambda c: c.value_counts())
+    .astype(int)
+)
+### >>>-----TAB2-----<<<
+
 with tab1:
     st.text("Este tablero presenta una exploración de compañías con entornos laborales adversos, utilizando comentarios públicos de empleados obtenidos de plataformas de reseñas laborales.\nEsta exploración permite identificar compañías que suelen hacer que sus empleados tengan estrés, se sientan sobre trabajados y eventualmente los lleve al burn out.")
     colA1, colA2, colA3, colA4 = st.columns(4)
@@ -164,10 +213,24 @@ with tab1:
     tcount2 = dft2.loc[tcompany2, 'review_id']
     colA4.metric(label='Representacion porcentual de keywords encontrados', value=str(f'{((tcount1*100)/tcount2)},%'), delta=tcount2, border=True)
 
+#TAB2 -- Data:
 with tab2:
     st.header("Analisis del conjunto de datos de Kaggle: Global Workplace Stress and Mental Health Survey.")
-    st.text('Pagina bajo construcción.')
-    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+
+    col1,col2 = st.columns([1,4])
+
+    data3 = data1.iloc[:, :20].copy()
+    with col1:
+        dynamic_filters = DynamicFilters(data3, filters=['Age','Gender','Industry','JobRole','Region','WorkLocation'])
+        dynamic_filters.display_filters()
+        # Display the dynamically filtered DataFrame
+        # Display filters
+    with col2:
+        st.subheader('Filtered Data')
+        dynamic_filters.display_df()
+        table
+    
+   
 with tab3:
     colC1,colC2 = st.columns(2)
     with colC1:
